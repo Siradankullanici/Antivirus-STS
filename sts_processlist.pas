@@ -2,7 +2,7 @@ unit sts_processlist;
 
 interface
 
-uses Windows, SysUtils, Classes, TlHelp32, PsApi;
+uses Windows, SysUtils, Classes, JwaPsApi, JwaTlHelp32;
 
   type
  (* *)
@@ -178,7 +178,6 @@ begin
     else VirtualFree(mPtr, 0, MEM_RELEASE);
 end;
 
-function sts_GetNameByPid(Pid: dword): widestring stdcall;
 const
     STATUS_SUCCESS              = NTStatus($00000000);
     STATUS_ACCESS_DENIED        = NTStatus($C0000022);

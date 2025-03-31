@@ -213,9 +213,20 @@ function WSAIoctl(s: TSocket;
 
 implementation
 
-function getsockopt;   far; external 'ws2_32.dll' name 'getsockopt';
-function setsockopt;   far; external 'ws2_32.dll' name 'setsockopt';
-function WSAIoctl;     far; external 'ws2_32.dll' name 'WSAIoctl';
+function getsockopt(s: TSocket; level, optname: Integer;
+  optval: PAnsiChar; var optlen: Integer): Integer; stdcall;
+  external 'ws2_32.dll' name 'getsockopt';
+
+function setsockopt(s: TSocket; level, optname: Integer;
+  optval: PAnsiChar; optlen: Integer): Integer; stdcall;
+  external 'ws2_32.dll' name 'setsockopt';
+
+function WSAIoctl(s: TSocket; dwIoControlCode: DWORD;
+  lpvInBuffer: Pointer; cbInBuffer: DWORD;
+  lpvOutBuffer: Pointer; cbOutBuffer: DWORD;
+  lpcbBytesReturned: LPDWORD;
+  lpOverlapped: Pointer; lpCompletionRoutine: Pointer): Integer; stdcall;
+  external 'ws2_32.dll' name 'WSAIoctl';
 
 type
   TIPProto = record

@@ -235,7 +235,7 @@ begin
       {>> Notification si besoin }
       if (Action <> FILE_ACTION_RENAMED_OLD_NAME)
       and (FAction in FNotifList) then
-        Synchronize(DoChange);
+        Synchronize(@DoChange);
 
       {>> Passe au suivant }
       Inc(I, Next);
